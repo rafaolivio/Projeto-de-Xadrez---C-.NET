@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tabuleiro;
+﻿using tabuleiro;
 
 namespace xadrez
 {
-    internal class Rei : Peca
+    class Rei : Peca
     {
+
         private PartidaDeXadrez partida;
 
         public Rei(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
@@ -19,7 +15,7 @@ namespace xadrez
         public override string ToString()
         {
             return "R";
-        }          
+        }
 
         private bool podeMover(Posicao pos)
         {
@@ -39,59 +35,59 @@ namespace xadrez
 
             Posicao pos = new Posicao(0, 0);
 
-            //acima
+            // acima
             pos.definirValores(posicao.linha - 1, posicao.coluna);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //ne
+            // ne
             pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //direita
+            // direita
             pos.definirValores(posicao.linha, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //se
+            // se
             pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //abaixo
+            // abaixo
             pos.definirValores(posicao.linha + 1, posicao.coluna);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //so
+            // so
             pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //esquerda
+            // esquerda
             pos.definirValores(posicao.linha, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //no
+            // no
             pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
 
-            //Jogada especial
+            // #jogadaespecial roque
             if (qteMovimentos == 0 && !partida.xeque)
             {
-                //: roque pequeno
+                // #jogadaespecial roque pequeno
                 Posicao posT1 = new Posicao(posicao.linha, posicao.coluna + 3);
                 if (testeTorreParaRoque(posT1))
                 {
@@ -102,8 +98,7 @@ namespace xadrez
                         mat[posicao.linha, posicao.coluna + 2] = true;
                     }
                 }
-
-                //: roque grande
+                // #jogadaespecial roque grande
                 Posicao posT2 = new Posicao(posicao.linha, posicao.coluna - 4);
                 if (testeTorreParaRoque(posT2))
                 {
